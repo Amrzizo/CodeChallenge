@@ -63,14 +63,14 @@ public class LogCatPrintService extends Service {
 
         try {
 
+
              Class localClass = Class.forName("android.os.ServiceManager");
             Method getService = localClass.getMethod("getService", new Class[]{String.class});
             if (getService != null) {
                 Object result = getService.invoke(localClass, "batterystats");
                 if (result != null) {
                     IBinder binder = (IBinder) result;
-                    // DO WHAT EVER YOU WANT AT THIS POINT, YOU WILL
-                    // NEED TO CAST THE BINDER TO THE PROPER TYPE OF THE SERVICE YOU USE.
+
                 }
             }
         } catch (ClassNotFoundException | NoSuchMethodException | IllegalAccessException | InvocationTargetException e) {
