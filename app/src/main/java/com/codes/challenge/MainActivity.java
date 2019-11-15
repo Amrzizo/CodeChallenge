@@ -36,20 +36,6 @@ public class MainActivity extends AppCompatActivity {
         super.onResume();
 
 
-        try {
-
-            Class localClass = Class.forName("android.os.ServiceManager");
-            Method getService = localClass.getMethod("getService", new Class[]{String.class});
-            if (getService != null) {
-                Object result = getService.invoke(localClass, "batterystats");
-                if (result != null) {
-                    IBinder binder = (IBinder) result;
-                }
-            }
-        } catch (ClassNotFoundException | NoSuchMethodException | IllegalAccessException | InvocationTargetException e) {
-            e.printStackTrace();
-        }
-
     }
 
 }

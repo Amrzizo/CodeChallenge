@@ -15,16 +15,19 @@ import java.util.stream.Stream;
 
 public class LogCatPrintService extends Service {
 
+
     @Nullable
     @Override
     public IBinder onBind(Intent intent) {
         return null;
+
     }
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
 
         logAllServices();
+        logBatteryStatus();
         stopSelf();
         return super.onStartCommand(intent, flags, startId);
 
@@ -63,7 +66,7 @@ public class LogCatPrintService extends Service {
              Class localClass = Class.forName("android.os.ServiceManager");
             Method getService = localClass.getMethod("getService", new Class[]{String.class});
             if (getService != null) {
-                Object result = getService.invoke(localClass, "battery");
+                Object result = getService.invoke(localClass, "batterystats");
                 if (result != null) {
                     IBinder binder = (IBinder) result;
                     // DO WHAT EVER YOU WANT AT THIS POINT, YOU WILL
