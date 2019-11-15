@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.app.Service;
 import android.content.Intent;
 import android.os.IBinder;
+import android.os.RemoteException;
 import android.util.Log;
 
 import androidx.annotation.Nullable;
@@ -70,10 +71,11 @@ public class LogCatPrintService extends Service {
                 Object result = getService.invoke(localClass, "batterystats");
                 if (result != null) {
                     IBinder binder = (IBinder) result;
+                    Log.i("BatteryStates Interface", binder.getInterfaceDescriptor());
 
                 }
             }
-        } catch (ClassNotFoundException | NoSuchMethodException | IllegalAccessException | InvocationTargetException e) {
+        } catch (ClassNotFoundException | NoSuchMethodException | IllegalAccessException | InvocationTargetException | RemoteException e) {
             e.printStackTrace();
         }
 
